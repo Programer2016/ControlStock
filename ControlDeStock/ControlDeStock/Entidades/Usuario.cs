@@ -12,20 +12,10 @@ namespace Entidades
     using System;
     using System.Collections.Generic;
     
-    public partial class Producto
+    public partial class Usuario
     {
-        public Producto()
-        {
-            this.DetalleVenta = new HashSet<DetalleVenta>();
-            this.ProductoCategoria = new HashSet<ProductoCategoria>();
-        }
-    
-        public int IdProducto { get; set; }
+        public int IdUsuario { get; set; }
         public string Nombre { get; set; }
-        public Nullable<decimal> Precio { get; set; }
-        public Nullable<int> Stock { get; set; }
-    
-        public virtual ICollection<DetalleVenta> DetalleVenta { get; set; }
-        public virtual ICollection<ProductoCategoria> ProductoCategoria { get; set; }
+        public string Password { get; set; }
     }
 }

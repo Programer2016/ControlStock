@@ -31,5 +31,6 @@ namespace Entidades
         public DbSet<Producto> Producto { get; set; }
         public DbSet<Venta> Venta { get; set; }
         public DbSet<ProductoCategoria> ProductoCategoria { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
     }
 }

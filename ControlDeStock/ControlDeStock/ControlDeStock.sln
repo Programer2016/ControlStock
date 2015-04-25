@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entidades", "Entidades\Enti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentacionWindows", "PresentacionWindows\PresentacionWindows.csproj", "{B22AB768-D12E-4B19-8225-09D6C55D7384}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestControlDeStock", "TestControlDeStock\TestControlDeStock.csproj", "{DC737FD3-F627-498F-A08B-44DEE15F97D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{B22AB768-D12E-4B19-8225-09D6C55D7384}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B22AB768-D12E-4B19-8225-09D6C55D7384}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B22AB768-D12E-4B19-8225-09D6C55D7384}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC737FD3-F627-498F-A08B-44DEE15F97D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC737FD3-F627-498F-A08B-44DEE15F97D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC737FD3-F627-498F-A08B-44DEE15F97D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC737FD3-F627-498F-A08B-44DEE15F97D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

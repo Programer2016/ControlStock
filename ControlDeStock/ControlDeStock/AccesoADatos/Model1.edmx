@@ -11,6 +11,7 @@
           <EntitySet Name="Gasto" EntityType="ControlStockDBModel.Store.Gasto" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Producto" EntityType="ControlStockDBModel.Store.Producto" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProductoCategoria" EntityType="ControlStockDBModel.Store.ProductoCategoria" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Usuario" EntityType="ControlStockDBModel.Store.Usuario" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Venta" EntityType="ControlStockDBModel.Store.Venta" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_DetalleVenta_Producto" Association="ControlStockDBModel.Store.FK_DetalleVenta_Producto">
             <End Role="Producto" EntitySet="Producto" />
@@ -62,6 +63,7 @@
           <Property Name="IdProducto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="varchar" MaxLength="200" />
           <Property Name="Precio" Type="decimal" Precision="10" Scale="4" />
+          <Property Name="Stock" Type="int" />
         </EntityType>
         <EntityType Name="ProductoCategoria">
           <Key>
@@ -70,6 +72,14 @@
           <Property Name="IdProductoCategoria" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="IdProducto" Type="int" />
           <Property Name="IdCategoria" Type="int" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Password" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Venta">
           <Key>
@@ -153,6 +163,7 @@
             <End Role="Producto" EntitySet="Producto" />
             <End Role="ProductoCategoria" EntitySet="ProductoCategoria" />
           </AssociationSet>
+          <EntitySet Name="Usuario" EntityType="ControlStockDBModel.Usuario" />
         </EntityContainer>
         <EntityType Name="Categoria">
           <Key>
@@ -192,6 +203,7 @@
           <Property Name="Precio" Type="Decimal" Precision="10" Scale="4" />
           <NavigationProperty Name="DetalleVenta" Relationship="ControlStockDBModel.FK_DetalleVenta_Producto" FromRole="Producto" ToRole="DetalleVenta" />
           <NavigationProperty Name="ProductoCategoria" Relationship="ControlStockDBModel.FK_ProductoCategoria_Producto" FromRole="Producto" ToRole="ProductoCategoria" />
+          <Property Type="Int32" Name="Stock" />
         </EntityType>
         <EntityType Name="Venta">
           <Key>
@@ -259,6 +271,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Type="Int32" Name="IdUsuario" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Nombre" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Password" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -297,6 +317,7 @@
           <EntitySetMapping Name="Producto">
             <EntityTypeMapping TypeName="ControlStockDBModel.Producto">
               <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
                 <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Precio" ColumnName="Precio" />
@@ -317,6 +338,15 @@
                 <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
                 <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
                 <ScalarProperty Name="IdProductoCategoria" ColumnName="IdProductoCategoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="ControlStockDBModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
