@@ -7,16 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AccesoADatos
+namespace Entidades
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Gasto
+    public partial class Categoria
     {
-        public int IdGasto { get; set; }
-        public Nullable<System.DateTime> Fecha { get; set; }
-        public string Proposito { get; set; }
-        public Nullable<decimal> Monto { get; set; }
+        public Categoria()
+        {
+            this.ProductoCategoria = new HashSet<ProductoCategoria>();
+        }
+    
+        public int IdCategoria { get; set; }
+        public string Nombre { get; set; }
+    
+        public virtual ICollection<ProductoCategoria> ProductoCategoria { get; set; }
     }
 }

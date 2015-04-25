@@ -7,21 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AccesoADatos
+namespace Entidades
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Categoria
+    public partial class ProductoCategoria
     {
-        public Categoria()
-        {
-            this.ProductoCategoria = new HashSet<ProductoCategoria>();
-        }
+        public int IdProductoCategoria { get; set; }
+        public Nullable<int> IdProducto { get; set; }
+        public Nullable<int> IdCategoria { get; set; }
     
-        public int IdCategoria { get; set; }
-        public string Nombre { get; set; }
-    
-        public virtual ICollection<ProductoCategoria> ProductoCategoria { get; set; }
+        public virtual Categoria Categoria { get; set; }
+        public virtual Producto Producto { get; set; }
     }
 }

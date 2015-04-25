@@ -7,18 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AccesoADatos
+namespace Entidades
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductoCategoria
+    public partial class DetalleVenta
     {
-        public int IdProductoCategoria { get; set; }
+        public int IdDetalleVenta { get; set; }
+        public Nullable<int> IdVenta { get; set; }
         public Nullable<int> IdProducto { get; set; }
-        public Nullable<int> IdCategoria { get; set; }
+        public Nullable<decimal> Precio { get; set; }
+        public Nullable<int> Cantidad { get; set; }
     
-        public virtual Categoria Categoria { get; set; }
         public virtual Producto Producto { get; set; }
+        public virtual Venta Venta { get; set; }
     }
 }
