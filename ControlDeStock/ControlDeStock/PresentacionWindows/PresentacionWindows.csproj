@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>7a0c92aa-00eb-4ce2-bdf8-4f713ff445f8</ProjectGuid>
+    <ProjectGuid>{B22AB768-D12E-4B19-8225-09D6C55D7384}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PresentacionWindows</RootNamespace>
@@ -73,6 +73,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entidades\Entidades.csproj">
+      <Project>{d66b0a7a-5635-4cdd-99c3-b04977a6ba52}</Project>
+      <Name>Entidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogicaDeNegocio\LogicaDeNegocio.csproj">
+      <Project>{12dc3933-ba15-4a7f-978a-52b027c8502f}</Project>
+      <Name>LogicaDeNegocio</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ControlStockDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="ControlStockDBModelStoreContainer">
+          <EntitySet Name="Categoria" EntityType="ControlStockDBModel.Store.Categoria" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DetalleVenta" EntityType="ControlStockDBModel.Store.DetalleVenta" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Gasto" EntityType="ControlStockDBModel.Store.Gasto" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Producto" EntityType="ControlStockDBModel.Store.Producto" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProductoCategoria" EntityType="ControlStockDBModel.Store.ProductoCategoria" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Venta" EntityType="ControlStockDBModel.Store.Venta" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_DetalleVenta_Producto" Association="ControlStockDBModel.Store.FK_DetalleVenta_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="DetalleVenta" EntitySet="DetalleVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleVenta_Venta" Association="ControlStockDBModel.Store.FK_DetalleVenta_Venta">
+            <End Role="Venta" EntitySet="Venta" />
+            <End Role="DetalleVenta" EntitySet="DetalleVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductoCategoria_Categoria" Association="ControlStockDBModel.Store.FK_ProductoCategoria_Categoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="ProductoCategoria" EntitySet="ProductoCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductoCategoria_Producto" Association="ControlStockDBModel.Store.FK_ProductoCategoria_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="ProductoCategoria" EntitySet="ProductoCategoria" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="IdCategoria" />
+          </Key>
+          <Property Name="IdCategoria" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="DetalleVenta">
+          <Key>
+            <PropertyRef Name="IdDetalleVenta" />
+          </Key>
+          <Property Name="IdDetalleVenta" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdVenta" Type="int" />
+          <Property Name="IdProducto" Type="int" />
+          <Property Name="Precio" Type="decimal" Precision="10" Scale="4" />
+          <Property Name="Cantidad" Type="int" />
+        </EntityType>
+        <EntityType Name="Gasto">
+          <Key>
+            <PropertyRef Name="IdGasto" />
+          </Key>
+          <Property Name="IdGasto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="date" />
+          <Property Name="Proposito" Type="varchar" MaxLength="200" />
+          <Property Name="Monto" Type="decimal" Precision="10" Scale="4" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+          </Key>
+          <Property Name="IdProducto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="varchar" MaxLength="200" />
+          <Property Name="Precio" Type="decimal" Precision="10" Scale="4" />
+        </EntityType>
+        <EntityType Name="ProductoCategoria">
+          <Key>
+            <PropertyRef Name="IdProductoCategoria" />
+          </Key>
+          <Property Name="IdProductoCategoria" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdProducto" Type="int" />
+          <Property Name="IdCategoria" Type="int" />
+        </EntityType>
+        <EntityType Name="Venta">
+          <Key>
+            <PropertyRef Name="IdVenta" />
+          </Key>
+          <Property Name="IdVenta" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="date" />
+        </EntityType>
+        <Association Name="FK_DetalleVenta_Producto">
+          <End Role="Producto" Type="ControlStockDBModel.Store.Producto" Multiplicity="0..1" />
+          <End Role="DetalleVenta" Type="ControlStockDBModel.Store.DetalleVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="DetalleVenta">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleVenta_Venta">
+          <End Role="Venta" Type="ControlStockDBModel.Store.Venta" Multiplicity="0..1" />
+          <End Role="DetalleVenta" Type="ControlStockDBModel.Store.DetalleVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venta">
+              <PropertyRef Name="IdVenta" />
+            </Principal>
+            <Dependent Role="DetalleVenta">
+              <PropertyRef Name="IdVenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductoCategoria_Categoria">
+          <End Role="Categoria" Type="ControlStockDBModel.Store.Categoria" Multiplicity="0..1" />
+          <End Role="ProductoCategoria" Type="ControlStockDBModel.Store.ProductoCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="IdCategoria" />
+            </Principal>
+            <Dependent Role="ProductoCategoria">
+              <PropertyRef Name="IdCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductoCategoria_Producto">
+          <End Role="Producto" Type="ControlStockDBModel.Store.Producto" Multiplicity="0..1" />
+          <End Role="ProductoCategoria" Type="ControlStockDBModel.Store.ProductoCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="ProductoCategoria">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ControlStockDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ContextoDb" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Categoria" EntityType="ControlStockDBModel.Categoria" />
+          <EntitySet Name="DetalleVenta" EntityType="ControlStockDBModel.DetalleVenta" />
+          <EntitySet Name="Gasto" EntityType="ControlStockDBModel.Gasto" />
+          <EntitySet Name="Producto" EntityType="ControlStockDBModel.Producto" />
+          <EntitySet Name="Venta" EntityType="ControlStockDBModel.Venta" />
+          <AssociationSet Name="FK_DetalleVenta_Producto" Association="ControlStockDBModel.FK_DetalleVenta_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="DetalleVenta" EntitySet="DetalleVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleVenta_Venta" Association="ControlStockDBModel.FK_DetalleVenta_Venta">
+            <End Role="Venta" EntitySet="Venta" />
+            <End Role="DetalleVenta" EntitySet="DetalleVenta" />
+          </AssociationSet>
+          <EntitySet Name="ProductoCategoria" EntityType="ControlStockDBModel.ProductoCategoria" />
+          <AssociationSet Name="FK_ProductoCategoria_Categoria" Association="ControlStockDBModel.FK_ProductoCategoria_Categoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="ProductoCategoria" EntitySet="ProductoCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductoCategoria_Producto" Association="ControlStockDBModel.FK_ProductoCategoria_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="ProductoCategoria" EntitySet="ProductoCategoria" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="IdCategoria" />
+          </Key>
+          <Property Name="IdCategoria" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="ProductoCategoria" Relationship="ControlStockDBModel.FK_ProductoCategoria_Categoria" FromRole="Categoria" ToRole="ProductoCategoria" />
+        </EntityType>
+        <EntityType Name="DetalleVenta">
+          <Key>
+            <PropertyRef Name="IdDetalleVenta" />
+          </Key>
+          <Property Name="IdDetalleVenta" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="IdVenta" Type="Int32" />
+          <Property Name="IdProducto" Type="Int32" />
+          <Property Name="Precio" Type="Decimal" Precision="10" Scale="4" />
+          <Property Name="Cantidad" Type="Int32" />
+          <NavigationProperty Name="Producto" Relationship="ControlStockDBModel.FK_DetalleVenta_Producto" FromRole="DetalleVenta" ToRole="Producto" />
+          <NavigationProperty Name="Venta" Relationship="ControlStockDBModel.FK_DetalleVenta_Venta" FromRole="DetalleVenta" ToRole="Venta" />
+        </EntityType>
+        <EntityType Name="Gasto">
+          <Key>
+            <PropertyRef Name="IdGasto" />
+          </Key>
+          <Property Name="IdGasto" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Precision="0" />
+          <Property Name="Proposito" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Monto" Type="Decimal" Precision="10" Scale="4" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+          </Key>
+          <Property Name="IdProducto" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Precio" Type="Decimal" Precision="10" Scale="4" />
+          <NavigationProperty Name="DetalleVenta" Relationship="ControlStockDBModel.FK_DetalleVenta_Producto" FromRole="Producto" ToRole="DetalleVenta" />
+          <NavigationProperty Name="ProductoCategoria" Relationship="ControlStockDBModel.FK_ProductoCategoria_Producto" FromRole="Producto" ToRole="ProductoCategoria" />
+        </EntityType>
+        <EntityType Name="Venta">
+          <Key>
+            <PropertyRef Name="IdVenta" />
+          </Key>
+          <Property Name="IdVenta" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="DetalleVenta" Relationship="ControlStockDBModel.FK_DetalleVenta_Venta" FromRole="Venta" ToRole="DetalleVenta" />
+        </EntityType>
+        <Association Name="FK_DetalleVenta_Producto">
+          <End Role="Producto" Type="ControlStockDBModel.Producto" Multiplicity="0..1" />
+          <End Role="DetalleVenta" Type="ControlStockDBModel.DetalleVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="DetalleVenta">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleVenta_Venta">
+          <End Role="Venta" Type="ControlStockDBModel.Venta" Multiplicity="0..1" />
+          <End Role="DetalleVenta" Type="ControlStockDBModel.DetalleVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venta">
+              <PropertyRef Name="IdVenta" />
+            </Principal>
+            <Dependent Role="DetalleVenta">
+              <PropertyRef Name="IdVenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ProductoCategoria">
+          <Key>
+            <PropertyRef Name="IdProductoCategoria" />
+          </Key>
+          <Property Type="Int32" Name="IdProductoCategoria" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="IdProducto" />
+          <Property Type="Int32" Name="IdCategoria" />
+          <NavigationProperty Name="Categoria" Relationship="ControlStockDBModel.FK_ProductoCategoria_Categoria" FromRole="ProductoCategoria" ToRole="Categoria" />
+          <NavigationProperty Name="Producto" Relationship="ControlStockDBModel.FK_ProductoCategoria_Producto" FromRole="ProductoCategoria" ToRole="Producto" />
+        </EntityType>
+        <Association Name="FK_ProductoCategoria_Categoria">
+          <End Type="ControlStockDBModel.Categoria" Role="Categoria" Multiplicity="0..1" />
+          <End Type="ControlStockDBModel.ProductoCategoria" Role="ProductoCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="IdCategoria" />
+            </Principal>
+            <Dependent Role="ProductoCategoria">
+              <PropertyRef Name="IdCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductoCategoria_Producto">
+          <End Type="ControlStockDBModel.Producto" Role="Producto" Multiplicity="0..1" />
+          <End Type="ControlStockDBModel.ProductoCategoria" Role="ProductoCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="ProductoCategoria">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ControlStockDBModelStoreContainer" CdmEntityContainer="ContextoDb">
+          <EntitySetMapping Name="Categoria">
+            <EntityTypeMapping TypeName="ControlStockDBModel.Categoria">
+              <MappingFragment StoreEntitySet="Categoria">
+                <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetalleVenta">
+            <EntityTypeMapping TypeName="ControlStockDBModel.DetalleVenta">
+              <MappingFragment StoreEntitySet="DetalleVenta">
+                <ScalarProperty Name="IdDetalleVenta" ColumnName="IdDetalleVenta" />
+                <ScalarProperty Name="IdVenta" ColumnName="IdVenta" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gasto">
+            <EntityTypeMapping TypeName="ControlStockDBModel.Gasto">
+              <MappingFragment StoreEntitySet="Gasto">
+                <ScalarProperty Name="IdGasto" ColumnName="IdGasto" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Proposito" ColumnName="Proposito" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="ControlStockDBModel.Producto">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Venta">
+            <EntityTypeMapping TypeName="ControlStockDBModel.Venta">
+              <MappingFragment StoreEntitySet="Venta">
+                <ScalarProperty Name="IdVenta" ColumnName="IdVenta" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductoCategoria">
+            <EntityTypeMapping TypeName="ControlStockDBModel.ProductoCategoria">
+              <MappingFragment StoreEntitySet="ProductoCategoria">
+                <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="IdProductoCategoria" ColumnName="IdProductoCategoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
